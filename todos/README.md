@@ -1,0 +1,1 @@
+Following a tutorial that builds a todo list with Meteor
