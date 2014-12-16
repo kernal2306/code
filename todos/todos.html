@@ -9,5 +9,17 @@
 </body>
 
 <template name="TodosPanel">
-  	Hello World
+  	<div class="todos-panel">
+		<ul class="todos-list">
+			{{#each items}}
+			<li class="todo-item">
+				{{> TodoItem}}
+			</li>
+			{{/each}}
+		</ul>
+	</div>
+</template>
+
+<template name="TodoItem">
+	{{subject}}
 </template>
