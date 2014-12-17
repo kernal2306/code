@@ -4,7 +4,11 @@
 
 <body>
  	<div class="containers">
-	  {{> TodosPanel}}
+		<div class="login">
+			{{> loginButtons}}
+		</div>
+		
+	  	{{> TodosPanel}}
 	</div>
 </body>
 
@@ -15,6 +19,10 @@
 			{{#each items}}
 			<li class="todo-item {{isDoneClass}}">
 				{{> TodoItem}}
+			</li>
+			{{else}}
+			<li class="todo-item empty">
+				No todos yet.
 			</li>
 			{{/each}}
 		</ul>
@@ -34,7 +42,12 @@
 
 <template name="CreateTodoItem">
 	<form class="create-todo">
-		<input type="text" placeholder="Create new todo..."/>
+		{{#if currentUser}}
+			<input type="text" placeholder="Create new todo..."/>
+		{{else}}
+			<input type="text" readonly placeholder="Sign in to create todos..."/>
+		{{/if}}
+		
 	</form>
 </template>
 
