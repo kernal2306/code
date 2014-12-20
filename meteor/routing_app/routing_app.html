@@ -5,8 +5,6 @@
 <body>
 </body>
 
-
-
 <template name="Layout">
 	<div class="container">
 		{{> yield}}
@@ -23,15 +21,15 @@
 	</div>
 	
 	<ul>
-		<li>
-			<a href="/blog/1">One</a>
-		</li>
-		<li>
-			<a href="/blog/2?q1=v1&q2=v2#hashfrag">Two</a>
-		</li>
-		<li>
-			<a href="/blog/3">Three</a>
-		</li>
+		{{#each articles}}
+			<li>
+				{{#linkTo route='article.show' query='q=search+string' hash='hashfrag'}}
+					<div>
+						{{title}}	
+					</div>
+				{{/linkTo}}
+			</li>
+		{{/each}}
 	</ul>
 </template>
 
