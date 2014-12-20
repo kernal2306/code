@@ -11,9 +11,20 @@ Router.route('/blog/new', function(){
 });
 
 Router.route('/blog/:_id', function(){
-	this.layout('Layout');
-	this.render('Article');
-},{
+	this.layout('Layout', {
+		data: function(){
+			return {
+				article: function(){
+					Articles.findOne({_id: this.params._id})
+				},
+				comments: function(){
+					Comments.find({article_id: this.params._id})
+				}
+			};
+		}
+	});
+	this.render('Article', {});
+}, {
 	name: 'article.show'
 });
 
@@ -29,7 +40,7 @@ if (Meteor.isServer) {
 			Articles.insert({
 				title: 'Blog Article ' + i,
 				body: 'This is the text body for the article I want to show.',
-				arthor: 'Leland Sanders'
+				author: 'Leland Sanders'
 			});
 		}
 	});
