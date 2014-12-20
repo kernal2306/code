@@ -13,14 +13,7 @@ Router.route('/blog/new', function(){
 Router.route('/blog/:_id', function(){
 	this.layout('Layout', {
 		data: function(){
-			return {
-				article: function(){
-					Articles.findOne({_id: this.params._id})
-				},
-				comments: function(){
-					Comments.find({article_id: this.params._id})
-				}
-			};
+			return Articles.findOne({_id: this.params._id});		
 		}
 	});
 	this.render('Article', {});
